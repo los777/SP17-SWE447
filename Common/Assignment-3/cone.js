@@ -26,7 +26,7 @@ function render() {
     cone.render();
 }
 
-function Square() {    
+function Cone() {    
     
     this.count = 4;   
                    
