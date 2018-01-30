@@ -1,7 +1,6 @@
 var gl = null;
 var cone = null;
-var start = 0;       
-var count = this.count;
+
 
 function init() {
     var canvas = document.getElementById( "webgl-canvas" );
@@ -24,8 +23,6 @@ function init() {
 function render() {
     gl.clear( gl.COLOR_BUFFER_BIT );
    
-    gl.drawArrays(gl.POINTS,start, count);
-    
     cone.render();
 }
 
