@@ -26,17 +26,5 @@ function render() {
     cone.render();
 }
 
-function Cone() {    
-    
-    this.count = 4;   
-                   
-    this.render = function () {      
-        ... // bind buffers       
-        var start = 0;       
-        var count = this.count;       
-        gl.drawArrays(gl.POINTS,            
-        start, count); 
-    };
-};
 
 window.onload = init;
