@@ -21,6 +21,9 @@ function init() {
 
 function render() {
     gl.clear( gl.COLOR_BUFFER_BIT );
+    var start = 0;       
+    var count = this.count;       
+    gl.drawArrays(gl.POINTS,start, count);
     cone.render();
 }
 
