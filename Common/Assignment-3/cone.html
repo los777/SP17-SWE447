@@ -8,6 +8,18 @@
   
 <script id="Cone-vertex-shader" type="x-shader/x-vertex">
 attribute vec4 vPosition;
+
+function Square() {    
+this.count = 4;   
+this.render = function () 
+{       
+... // bind buffers       
+var start = 0;       
+var count = this.count;       
+gl.drawArrays(gl.POINTS,            
+start, count); 
+};
+};
 void main()
 {
     gl_PointSize = 5.0;
