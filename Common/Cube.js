@@ -1,4 +1,4 @@
-function Cube(gl, vertexShaderId, fragmentShaderId) {
+function Square(gl, vertexShaderId, fragmentShaderId) {
 	var vertShdr = vertexShaderId || "Square-vertex-shader";
 	var fragShdr = fragmentShaderId || "Square-fragment-shader";
 
