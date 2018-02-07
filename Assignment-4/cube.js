@@ -7,7 +7,7 @@ function init() {
   
     gl = WebGLUtils.setupWebGL( canvas );
    
-    cube = new Cube( 90);
+    cube = new Cube( gl,n);
 
     if ( !gl ) {
         alert("Unable to setup WebGL");
