@@ -1,5 +1,5 @@
 var gl = null;
-var cube = null;
+var square = null;
 
 
 function init() {
@@ -7,7 +7,7 @@ function init() {
   
     gl = WebGLUtils.setupWebGL( canvas );
    
-    square = new Square( gl,n);
+    square = new Square( gl);
 
     if ( !gl ) {
         alert("Unable to setup WebGL");
