@@ -1,5 +1,5 @@
 var gl = null;
-var cone = null;
+var cube = null;
 
 
 function init() {
@@ -7,7 +7,7 @@ function init() {
   
     gl = WebGLUtils.setupWebGL( canvas );
    
-    cone = new Cone(gl, 90);
+    cube = new Cube(gl, 90);
 
     if ( !gl ) {
         alert("Unable to setup WebGL");
@@ -24,7 +24,7 @@ function init() {
 function render() {
     gl.clear( gl.COLOR_BUFFER_BIT );
    
-    cone.render();
+    cube.render();
 }
 
 
