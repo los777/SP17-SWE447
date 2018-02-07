@@ -77,7 +77,7 @@ function Cube(gl, vertexShaderId, fragmentShaderId) {
 		var start = 0;
 		var count = this.count;
 		//gl.drawArrays(gl.TRIANGLE_STRIP, start, count); // TRIANGLE_STRIP
-		gl.drawElements(gl.TRIANGLE_Fan, this.indices.values.length, gl.UNSIGNED_SHORT, 0);
+		gl.drawElements(gl.TRIANGLE, this.indices.values.length, gl.UNSIGNED_SHORT, 0);
 
 
 	};
