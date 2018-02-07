@@ -20,10 +20,10 @@ function Cube(gl, vertexShaderId, fragmentShaderId) {
 		    // Front face
 		    0.0, 0.0, 0.0// Vertex 0
 		    1.0, 0.0, 0.0// Vertex 1
-		    1.0, 1.0, 1.0 // Vertex 2
-		    0.0, 0.0, 1.0  // Vertex 3
+		    1.0, 1.0, 0.0 // Vertex 2
+		    0.0, 0.0, 0.0  // Vertex 3
 		]),
-		numComponents : 2 // 3 components for each
+		numComponents : 3 // 3 components for each
 		// position (2D coords)
 	};
 	this.colors = {
