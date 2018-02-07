@@ -7,7 +7,7 @@ function init() {
   
     gl = WebGLUtils.setupWebGL( canvas );
    
-    cube = new Cube( gl,n);
+    square = new Square( gl,n);
 
     if ( !gl ) {
         alert("Unable to setup WebGL");
@@ -24,7 +24,7 @@ function init() {
 function render() {
     gl.clear( gl.COLOR_BUFFER_BIT );
    
-    cube.render();
+    square.render();
 }
 
 
