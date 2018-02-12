@@ -53,7 +53,7 @@ function Cube( vertexShaderId, fragmentShaderId ) {
           -1.0, -1.0, -1.0,
           -1.0, -1.0,  1.0,
           -1.0,  1.0,  1.0,
-          -1.0,  1.0, -1.0,
+          -1.0,  1.0, -1.0
 
         ]),
         numComponents : 3
@@ -95,7 +95,7 @@ function Cube( vertexShaderId, fragmentShaderId ) {
            0.5,  0.5,  0.5,
            0.4,  0.4,  0.4,
            0.9,  0.9,  0.9,
-           1.0,  1.0,  1.0,
+           1.0,  1.0,  1.0
 
             ]),
         numComponents : 3
@@ -110,7 +110,7 @@ function Cube( vertexShaderId, fragmentShaderId ) {
                 8,  9,  10,     8,  10, 11,   // top
                 12, 13, 14,     12, 14, 15,   // bottom
                 16, 17, 18,     16, 18, 19,   // right
-                20, 21, 22,     20, 22, 23,   // left
+                20, 21, 22,     20, 22, 23   // left
 
         ])
     };
