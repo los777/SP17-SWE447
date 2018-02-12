@@ -28,8 +28,8 @@ function Cube( vertexShaderId, fragmentShaderId ) {
           // Back face
            0.0,  0.0,  0.0,
            0.0,  1.0,  0.0,
-           1.0,  1.0,   0.0,
-           1.0,  0.0,   0.0,
+           1.0,  1.0,  0.0,
+           1.0,  0.0,  0.0,
 
           // Top face
            0.0,  1.0,  0.0,
@@ -56,7 +56,7 @@ function Cube( vertexShaderId, fragmentShaderId ) {
            0.0,  1.0,  0.0,
 
             ]),
-        numComponents : 3
+        numComponents : 6
     };
     
     this.indices = { 
