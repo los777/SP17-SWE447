@@ -18,7 +18,16 @@ var gl;
 
 var Planets = {
 	Sun : undefined,
-	
+	Mercury : undefined,
+	Venus : undefined,
+	Earth : undefined,
+	Moon : undefined,
+	Mars : undefined,
+	Jupiter : undefined,
+	Saturn : undefined,
+	Uranus : undefined,
+	Neptune : undefined,
+	Pluto : undefined
 };
 
 // Viewing transformation parameters
@@ -124,7 +133,7 @@ function render() {
 
 	var name, planet, data;
 
-	name = "Mars";
+	name = "Sun";
 	planet = Planets[name];
 	data = SolarSystem[name];
 
@@ -152,7 +161,62 @@ function render() {
 	planet.render();
 	ms.pop();
 	
+	renderPlanet("Mercury", ms);
 	
+	renderPlanet("Venus", ms);
+	
+	//Utilize the render pipeline for the Earth and it's Moon
+	name = "Earth";
+	planet = Planets[name];
+	data = SolarSystem[name];
+	
+	planet.PointMode = false;
+	
+	ms.push();
+	ms.rotate(time * orbitScalar / data.year, [0.0, 1.0, 0.0]);
+	ms.translate(data.distance, 0, 0);
+	ms.push();
+	ms.scale(data.radius);
+	gl.useProgram(planet.program);
+	gl.uniformMatrix4fv(planet.uniforms.MV, false, flatten(ms.current()));
+	gl.uniformMatrix4fv(planet.uniforms.P, false, flatten(P));
+	gl.uniform4fv(planet.uniforms.color, flatten(data.color));
+	gl.uniform3fv(planet.uniforms.lightPos, flatten(sunPos));
+	gl.uniform3fv(planet.uniforms.ambientLight, flatten(ambient));
+	planet.render();
+	ms.pop();
+	
+	//Borrow some of the transformations for the Earth to render the moon
+	name = "Moon";
+	planet = Planets[name];
+	data = SolarSystem[name];
+	
+	planet.PointMode = false;
+	
+	ms.rotate(time * orbitScalar / data.year, [0.0, 1.0, 0.0]);
+	ms.translate(data.distance, 0, 0);
+	ms.scale(data.radius);
+	gl.useProgram(planet.program);
+	gl.uniformMatrix4fv(planet.uniforms.MV, false, flatten(ms.current()));
+	gl.uniformMatrix4fv(planet.uniforms.P, false, flatten(P));
+	gl.uniform4fv(planet.uniforms.color, flatten(data.color));
+	gl.uniform3fv(planet.uniforms.lightPos, flatten(sunPos));
+	gl.uniform3fv(planet.uniforms.ambientLight, flatten(ambient));
+	planet.render();
+	ms.pop();
+
+	renderPlanet("Mars", ms);
+	
+	renderPlanet("Jupiter", ms);
+	
+	renderPlanet("Saturn", ms);
+	
+	renderPlanet("Uranus", ms);
+	
+	renderPlanet("Neptune", ms);
+
+	renderPlanet("Pluto", ms);
+		
 	window.requestAnimationFrame(render);
 }
 
