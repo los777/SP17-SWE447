@@ -3,8 +3,6 @@ var SolarSystem = {
     radius : 5,  
     distance : 0,
     year : 0,
-	//Push past HDR to force this color to not be dim lit
-	//Simulate Emission effect
     color : [ 10.0, 10.0, 0.0, 1.0 ]
   },
   Mercury : {
@@ -32,7 +30,7 @@ var SolarSystem = {
     color : [ 0.5, 0.5, 0.5, 1.0 ]
   },
   Mars : {
-    radius : 1,
+    radius : 10,
     distance : 20,
     year : 1.88,
     color : [ 1.0, 0.0, 0.0, 1.0 ]
