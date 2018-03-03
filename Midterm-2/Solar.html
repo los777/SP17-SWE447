@@ -35,18 +35,13 @@
 			varying vec3 fNormal;
 			varying vec4 fWorldPos;
 			varying vec2 fTexCoord;
-			
-			uniform vec3  lightPos;
-			uniform vec3  ambientLight;
 			uniform vec4  color;
 			
 			uniform sampler2D diffuseSampler;
 			void main()
 			{
 				vec3 texel = color.xyz * texture2D(diffuseSampler, fTexCoord.st).rgb;
-				vec3 lightDir = normalize(lightPos - fWorldPos.xyz);
-				vec3 lightModel = ambientLight + vec3(1.0, 1.0, 1.0) * max(dot(fNormal, lightDir), 0.0);
-				gl_FragColor = vec4(texel * lightModel, 1.0);
+				gl_FragColor = vec4(texel, 1.0);
 			}
 		</script>
 	</head>
