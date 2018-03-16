@@ -1,21 +1,21 @@
 
 1.OVERVIEW
-I will be working on a particle effect that will look like stars that are slowly floating around. These stars will render lines to 
-eachother when in certain proximity of eachother. These paricles will be shown on top of some sort of outerspace textured background 
-to add to its overall effect. As a stretch goal I might make it interactive such as being able to manipulate particles with mouse.
+
+  I will be working with Edgar Hernandez on a game that will allow players to rob and escape while being pursued by law enforcement.
+  Mechanics will include shooting and driving.
 
 2.SCHEDULE
   
-  wk1: Collect info on creating particles.
+  wk1: Collect info on creating mechanics.
   
   wk2: Get some code done for testing.
   
   wk3: Have movement done.
   
-  wk4: Make particles interact with eachother by rendering lines.
+  wk4: Make BASIC AI.
   
-  wk5: [Stretch goal] Make interactive somehow.
+  wk5: [Stretch goal] Make music.
   
 3.IMPLEMENTATION
 
-  I will create a web-based application using particles.js.
+  We will create a web-based application using phaser.js.
