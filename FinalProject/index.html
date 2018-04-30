@@ -1,0 +1,119 @@
+<!doctype html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8" />
+    <title>Making your first Phaser 3 Game - Part 6</title>
+    <script src="src/phaser.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+<script type="text/javascript">
+
+    var config = {
+        type: Phaser.AUTO,
+        width: 800,
+        height: 600,
+        physics: {
+            default: 'arcade',
+            arcade: {
+                gravity: { y: 0 },
+                debug: false
+            }
+        },
+        scene: {
+            preload: preload,
+            create: create,
+            update: update
+        }
+    };
+
+    var player;
+    var moneyBag;
+    var cursors;
+
+    var game = new Phaser.Game(config);
+
+    function preload ()
+    {
+        this.load.image('ground', 'assets/ground.png');
+        this.load.image('money', 'assets/money.png');
+        this.load.image('bomb', 'assets/bomb.png');
+        this.load.image('dude', 'assets/dude.png');
+    }
+
+    function create ()
+    {
+        this.add.image(400, 300, 'ground');
+       
+        
+        player = this.physics.add.sprite(100, 450, 'dude');
+        
+        moneyBag = this.physics.add.sprite(300, 250, 'money');
+       
+        player.setCollideWorldBounds(true);
+
+        cursors = this.input.keyboard.createCursorKeys();
+
+        
+        
+        this.physics.add.overlap(player, moneyBag, collectMoney, null, this);
+
+       
+    }
+
+    function update ()
+    {
+         if (cursors.left.isDown)
+        {
+
+            player.setVelocityX(-160);
+
+        }
+        else if (cursors.right.isDown)
+        {
+
+            player.setVelocityX(160);
+ 
+        }
+
+        else
+        {
+            player.setVelocityX(0);
+
+        }
+
+        if (cursors.up.isDown)
+        {
+
+            player.setVelocityY(-160);
+
+        }
+        else if (cursors.down.isDown)
+        {
+
+            player.setVelocityY(160);
+
+        }
+        else
+        {
+            player.setVelocityY(0);
+
+        }
+
+        
+    }
+
+    function collectMoney (player, money)
+    {
+       money.disableBody(true, true);
+    }
+
+</script>
+
+</body>
+</html>
