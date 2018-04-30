@@ -35,6 +35,8 @@
     var player;
     var moneyBag;
     var cursors;
+    var gotMoney;
+    var driving;
 
     var game = new Phaser.Game(config);
 
@@ -42,8 +44,10 @@
     {
         this.load.image('ground', 'assets/ground.png');
         this.load.image('money', 'assets/money.png');
-        this.load.image('bomb', 'assets/bomb.png');
+        this.load.image('cop', 'assets/copCar.png');
         this.load.image('dude', 'assets/dude.png');
+        this.load.image('playerCar', 'assets/playerCar.png');
+        
     }
 
     function create ()
@@ -54,54 +58,135 @@
         player = this.physics.add.sprite(100, 450, 'dude');
         
         moneyBag = this.physics.add.sprite(300, 250, 'money');
-       
+
+        cops = this.physics.add.sprite(1000, 0, 'cop');
+
         player.setCollideWorldBounds(true);
 
         cursors = this.input.keyboard.createCursorKeys();
 
         
-        
         this.physics.add.overlap(player, moneyBag, collectMoney, null, this);
+
 
        
     }
 
     function update ()
     {
+
+        if (driving)
+        {
+            playerCar = this.physics.add.sprite(player.x, player.y, 'playerCar');
+            this.physics.add.overlap(playerCar, cops, restartGame, null, this);
+            driving = false;
+        }
+       
+
+        if (gotMoney)
+        {
+            player.disableBody(true, true);
+            this.physics.moveTo(cops, playerCar.x, playerCar.y, 100);
+            cops.rotation = Math.atan2(playerCar.y - cops.y, playerCar.x - cops.x);
+            playerCar.rotation = 0;
+        }
+       
+
          if (cursors.left.isDown)
         {
+           
+            if(gotMoney)
+            {
+                
+                playerCar.setVelocityX(-200);
+                playerCar.flipX = true;
+                playerCar.rotation = 0;
+            }
 
-            player.setVelocityX(-160);
+            if(!gotMoney)
+            {
+                player.setVelocityX(-160);
+            }
+            
+            
+            
 
         }
         else if (cursors.right.isDown)
         {
+            
+            if(gotMoney)
+            {
+                 playerCar.setVelocityX(200);
+                 playerCar.flipX = false;
+                 playerCar.rotation = 0;
+            }
 
-            player.setVelocityX(160);
- 
+            if(!gotMoney)
+            {
+                player.setVelocityX(160);
+            }
         }
 
         else
         {
-            player.setVelocityX(0);
+            
+           if(gotMoney)
+            {
+                playerCar.setVelocityX(0);
+            }
+
+            if(!gotMoney)
+            {
+                player.setVelocityX(0);
+            }
 
         }
 
         if (cursors.up.isDown)
         {
+           
+            if(gotMoney)
+            {
+                playerCar.setVelocityY(-200);
+                playerCar.rotation = -1.55;
+                playerCar.flipX = false;
+            }
 
-            player.setVelocityY(-160);
+            if(!gotMoney)
+            {
+                player.setVelocityY(-160);
+            }
 
         }
         else if (cursors.down.isDown)
         {
+            
+             if(gotMoney)
+            {
+                playerCar.setVelocityY(200);
+                playerCar.rotation = 1.6;
+                playerCar.flipX = false;
+            }
 
-            player.setVelocityY(160);
+            if(!gotMoney)
+            {
+                player.setVelocityY(160);
+            }
 
         }
         else
         {
-            player.setVelocityY(0);
+            
+            if(gotMoney)
+            {
+                playerCar.setVelocityY(0);
+            }
+
+            if(!gotMoney)
+            {
+                player.setVelocityY(0);
+            }
 
         }
 
@@ -111,8 +196,19 @@
     function collectMoney (player, money)
     {
        money.disableBody(true, true);
+       gotMoney = true;
+       driving = true;
     }
 
+    function restartGame()
+    {
+       this.scene.manager.bootScene(this);
+       gotMoney = false;
+       driving = false;
+    }
+    
+
+    
 </script>
 
 </body>
