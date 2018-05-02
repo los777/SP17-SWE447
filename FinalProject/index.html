@@ -38,6 +38,9 @@
     var gotMoney;
     var driving;
     var hacker;
+    var text2;
+    var text1;
+    var caught;
 
     var game = new Phaser.Game(config);
 
@@ -56,6 +59,8 @@
 
     function create ()
     {
+        
+
         this.add.image(960, 540, 'ground');
 
         text1 = this.physics.add.sprite(200, 450, 'text1');
@@ -94,11 +99,19 @@
 
     function update ()
     {
+        if (caught)
+        {
+             text2.disableBody(true, true);
+        }
 
         if (driving)
         {
             playerCar = this.physics.add.sprite(player.x, player.y, 'playerCar');
-            this.physics.add.overlap(playerCar, cops, restartGame, null, this);
+            this.physics.add.overlap(playerCar, cops, restartGame, null, this)
+            {
+                caught = true;
+
+            };
             driving = false;
         }
        
@@ -109,11 +122,11 @@
             this.physics.moveTo(cops, playerCar.x, playerCar.y, 300);
             cops.rotation = Math.atan2(playerCar.y - cops.y, playerCar.x - cops.x);
             playerCar.rotation = 0;
-            text2 = this.physics.add.sprite(200, 450, 'text2');
-
-            
+            text2 = this.physics.add.sprite(300, 450, 'text2');
  
         }
+
+        
         
 
        
@@ -228,16 +241,17 @@
     }
 
     function restartGame()
-    {
+    {  
+       
        this.scene.manager.bootScene(this);
-       gotMoney = false;
-       driving = false;
+      
        playerCar.disableBody(true, true);
        player.disableBody(true, true);
        cops.disableBody(true, true);
        hacker.disableBody(true, true);
-       text2.disableBody(true, true);
-       text1.disableBody(true, true);
+       gotMoney = false;
+       driving = false;
+      
     }
 
    
