@@ -48,6 +48,8 @@
         this.load.image('cop', 'assets/copCar.png');
         this.load.image('dude', 'assets/dude.png');
         this.load.image('playerCar', 'assets/playerCar.png');
+        this.load.image('text1', 'assets/text1.png');
+        this.load.image('text2', 'assets/text2.png');
         this.load.spritesheet('hackerSpriteSheet', 'assets/hackerSpriteSheet.png',{ frameWidth: 512, frameHeight: 512 });
         
     }
@@ -56,7 +58,9 @@
     {
         this.add.image(960, 540, 'ground');
 
-        
+        text1 = this.physics.add.sprite(200, 450, 'text1');
+
+        hacker =  this.physics.add.sprite(200, 200, 'hackerSpriteSheet');
        
         player = this.physics.add.sprite(800, 800, 'dude');
 
@@ -68,6 +72,9 @@
 
         cursors = this.input.keyboard.createCursorKeys();
 
+
+
+       
         
         this.physics.add.overlap(player, moneyBag, collectMoney, null, this);
 
@@ -77,6 +84,9 @@
             frameRate: 10,
             repeat: -1
         });
+
+
+        hacker.anims.play('One', true);
 
 
        
@@ -96,10 +106,12 @@
         if (gotMoney)
         {
             player.disableBody(true, true);
-            this.physics.moveTo(cops, playerCar.x, playerCar.y, 100);
+            this.physics.moveTo(cops, playerCar.x, playerCar.y, 300);
             cops.rotation = Math.atan2(playerCar.y - cops.y, playerCar.x - cops.x);
             playerCar.rotation = 0;
-            hacker.anims.play('One', true);
+            text2 = this.physics.add.sprite(200, 450, 'text2');
+
+            
  
         }
         
@@ -112,14 +124,14 @@
             if(gotMoney)
             {
                 
-                playerCar.setVelocityX(-200);
+                playerCar.setVelocityX(-250);
                 playerCar.flipX = true;
                 playerCar.rotation = 0;
             }
 
             if(!gotMoney)
             {
-                player.setVelocityX(-160);
+                player.setVelocityX(-250);
             }
             
             
@@ -131,14 +143,14 @@
             
             if(gotMoney)
             {
-                 playerCar.setVelocityX(200);
+                 playerCar.setVelocityX(250);
                  playerCar.flipX = false;
                  playerCar.rotation = 0;
             }
 
             if(!gotMoney)
             {
-                player.setVelocityX(160);
+                player.setVelocityX(250);
             }
         }
 
@@ -162,14 +174,14 @@
            
             if(gotMoney)
             {
-                playerCar.setVelocityY(-200);
+                playerCar.setVelocityY(-250);
                 playerCar.rotation = -1.55;
                 playerCar.flipX = false;
             }
 
             if(!gotMoney)
             {
-                player.setVelocityY(-160);
+                player.setVelocityY(-250);
             }
 
         }
@@ -178,14 +190,14 @@
             
              if(gotMoney)
             {
-                playerCar.setVelocityY(200);
+                playerCar.setVelocityY(250);
                 playerCar.rotation = 1.6;
                 playerCar.flipX = false;
             }
 
             if(!gotMoney)
             {
-                player.setVelocityY(160);
+                player.setVelocityY(250);
             }
 
         }
@@ -210,7 +222,7 @@
     function collectMoney (player, money)
     {
        money.disableBody(true, true);
-       hacker =  this.physics.add.sprite(200, 200, 'hackerSpriteSheet');
+       text1.disableBody(true, true);
        gotMoney = true;
        driving = true;
     }
@@ -223,14 +235,12 @@
        playerCar.disableBody(true, true);
        player.disableBody(true, true);
        cops.disableBody(true, true);
-       hacker
+       hacker.disableBody(true, true);
+       text2.disableBody(true, true);
+       text1.disableBody(true, true);
     }
 
-    function render() {
-
-    this.debug.text("Time until event: " + game.time.events.duration, 1000, 1000);
-
-}
+   
     
 
     
